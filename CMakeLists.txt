@@ -184,8 +184,8 @@ target_sources(infinisim PUBLIC ${LITTLEFS_SRC})
 # HACK: copied from InfiniTime cmake, no cmake dependencies here ...
 add_custom_command(
   PRE_BUILD
-  OUTPUT ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
-  COMMAND python3 ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics > ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
+  OUTPUT ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.h
+  COMMAND python3 ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics > ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.h
   DEPENDS ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics
   COMMENT "Processing ICS file for schedule app ..."
 )
