@@ -181,6 +181,14 @@ target_sources(infinisim PUBLIC ${InfiniTime_ICONS})
 target_sources(infinisim PUBLIC ${InfiniTime_WIDGETS})
 target_sources(infinisim PUBLIC ${LITTLEFS_SRC})
 
+add_custom_command(
+  PRE_BUILD
+  OUTPUT ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
+  COMMAND python3 ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics > ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
+  DEPENDS ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics
+  COMMENT "Processing ICS file..."
+)
+
 # add files directly from InfiniTime sources
 target_include_directories(infinisim PRIVATE "${InfiniTime_DIR}/src")
 target_include_directories(infinisim PRIVATE "${InfiniTime_DIR}/src/libs/littlefs")
@@ -223,6 +231,7 @@ target_sources(infinisim PUBLIC
   ${InfiniTime_DIR}/src/systemtask/SystemTask.cpp
   ${InfiniTime_DIR}/src/systemtask/SystemMonitor.h
   ${InfiniTime_DIR}/src/systemtask/SystemMonitor.cpp
+  ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
 )
 
 
