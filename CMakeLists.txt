@@ -181,12 +181,13 @@ target_sources(infinisim PUBLIC ${InfiniTime_ICONS})
 target_sources(infinisim PUBLIC ${InfiniTime_WIDGETS})
 target_sources(infinisim PUBLIC ${LITTLEFS_SRC})
 
+# HACK: copied from InfiniTime cmake, no cmake dependencies here ...
 add_custom_command(
   PRE_BUILD
   OUTPUT ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
   COMMAND python3 ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics > ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
   DEPENDS ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics
-  COMMENT "Processing ICS file..."
+  COMMENT "Processing ICS file for schedule app ..."
 )
 
 # add files directly from InfiniTime sources
