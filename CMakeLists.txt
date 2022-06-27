@@ -181,15 +181,6 @@ target_sources(infinisim PUBLIC ${InfiniTime_ICONS})
 target_sources(infinisim PUBLIC ${InfiniTime_WIDGETS})
 target_sources(infinisim PUBLIC ${LITTLEFS_SRC})
 
-# HACK: copied from InfiniTime cmake, no cmake dependencies here ...
-add_custom_command(
-  PRE_BUILD
-  OUTPUT ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.h
-  COMMAND python3 ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics > ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.h
-  DEPENDS ${InfiniTime_DIR}/src/displayapp/screens/ics_to_header.py ${InfiniTime_DIR}/src/displayapp/screens/invite.ics
-  COMMENT "Processing ICS file for schedule app ..."
-)
-
 # add files directly from InfiniTime sources
 target_include_directories(infinisim PRIVATE "${InfiniTime_DIR}/src")
 target_include_directories(infinisim PRIVATE "${InfiniTime_DIR}/src/libs/littlefs")
@@ -205,6 +196,8 @@ target_sources(infinisim PUBLIC
   ${InfiniTime_DIR}/src/displayapp/icons/bg_clock.c # used by WatchFaceAnalog.cpp
   ${InfiniTime_DIR}/src/buttonhandler/ButtonHandler.h
   ${InfiniTime_DIR}/src/buttonhandler/ButtonHandler.cpp
+  ${InfiniTime_DIR}/src/components/ctf/CtfController.h
+  ${InfiniTime_DIR}/src/components/ctf/CtfController.cpp
   ${InfiniTime_DIR}/src/components/alarm/AlarmController.h
   ${InfiniTime_DIR}/src/components/alarm/AlarmController.cpp
   ${InfiniTime_DIR}/src/components/ble/BleController.h
@@ -232,7 +225,6 @@ target_sources(infinisim PUBLIC
   ${InfiniTime_DIR}/src/systemtask/SystemTask.cpp
   ${InfiniTime_DIR}/src/systemtask/SystemMonitor.h
   ${InfiniTime_DIR}/src/systemtask/SystemMonitor.cpp
-  ${InfiniTime_DIR}/src/displayapp/screens/schedule_events.hpp
 )
 
 
